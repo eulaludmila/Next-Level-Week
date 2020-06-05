@@ -1,0 +1,34 @@
+#modal{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999999;
+    background-color: rgb(28, 19, 46,0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#modal h2{
+    font-size: 35px;
+    color: #fff;
+}
+
+#modal svg{
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+    stroke: #34cb79;
+}
+
+.open{
+    display: block;
+    
+}
+
+.close{
+    display: none;
+}
