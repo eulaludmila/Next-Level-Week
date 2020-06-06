@@ -1,1 +1,7 @@
-/node_modules
+node_modules
+uploads/*
+
+# fazer com que a pasta uploads permaneça e apenas os imgs não salve,
+!uploads/.gitkeep
+
+*.sqlite

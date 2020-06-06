@@ -20,7 +20,14 @@ class PointsController{
         .distinct()
         .select('points.*');
 
-        return res.json(points);
+        const serializedPoints = points.map(point => {
+            return {
+                ...points,
+                image_url: `http://192.168.100.4:3333/uploads/${point.image}`,
+            }
+        })
+
+        return res.json(serializedPoints);
         
 
     }
@@ -34,14 +41,21 @@ class PointsController{
         if(!point){
             return res.status(400).json({message:'Point not found.'});
         }
+        const serializedPoint = {
+      
+                ...point,
+                image_url: `http://192.168.100.4:3333/uploads/${point.image}`,
+       
+        }
         
         const items = await knex('items')
         .join('point_items','items.id', '=' , 'point_items.item_id')
         .where('point_items.point_id', id)
         .select('title');
 
+
         return res.json({
-            point, items
+            point:serializedPoint, items
         });
     }
 
@@ -57,12 +71,14 @@ class PointsController{
             uf,
             items
         } = req.body;
+
+        // console.log(req);
     
         //trx(transation)usada para caso der erro em alguma requisição, não insira nada
         const trx = await knex.transaction();
 
         const point = {
-            image:'https://images.unsplash.com/photo-1583258292688-d0213dc5a3a8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60',
+            image:req.file.filename,
             nome,
             email,
             whatsapp,
@@ -71,12 +87,16 @@ class PointsController{
             city,
             uf,
         }
+
+            const insertedIds = await trx('points').insert(point);
     
-        const insertedIds = await trx('points').insert(point);
-    
+   
         const point_id = insertedIds[0];
     
-        const pointItems = items.map((item_id: number) => {
+        const pointItems = items
+        .split(',')
+        .map((item:string) => Number(item.trim()))
+        .map((item_id: number) => {
             return {
                 item_id,
                 point_id,

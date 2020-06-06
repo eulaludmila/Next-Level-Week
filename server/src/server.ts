@@ -2,6 +2,7 @@ import express from 'express';
 import routes from './routes';
 import path from 'path';
 import cors from 'cors';
+import {errors} from 'celebrate';
 
 //Precisa de uma definição de tipos: olhar nos "..." do import onde mostra o que instalar
 
@@ -20,6 +21,7 @@ app.use(routes);
 
 //express.static(): caminho estático
 app.use('/uploads', express.static(path.resolve(__dirname, '..','uploads')));
+app.use(errors());
 
 //Rota: Endereço completo da requisição
 //Recurso: Qual entidade estamos acessando no sistema

@@ -12,6 +12,7 @@ import api from '../../services/api';
 import axios from 'axios';
 import { LeafletMouseEvent } from 'leaflet';
 import Modal from '../../components/Modal';
+import DropZone from '../../components/Dropzone';
 
 //array ou objeto: manualmente informar o tipo da variável
 
@@ -46,6 +47,7 @@ const CreatePoint = () => {
     const [cities, setCities] = useState<string[]>([]);
     const [selectedItems, setSelectedItems] = useState<number[]>([]);
     const [selectedPosition, setSelectedPosition] = useState<[number, number]>([0, 0])
+    const [selectedFile, setSelectedFile] = useState<File>();
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(position => {
@@ -143,16 +145,23 @@ const CreatePoint = () => {
         const [latitude, longitude] = selectedPosition;
         const items = selectedItems;
 
-        const data = {
-            nome,
-            email,
-            whatsapp,
-            uf,
-            city,
-            latitude,
-            longitude,
-            items
-        }
+        const data = new FormData();
+
+            //enviar o form data assim, pois o tipo não é mais body e sim multipart
+            data.append('nome',nome);
+            data.append('email',email);
+            data.append('whatsapp',whatsapp);
+            data.append('uf',uf);
+            data.append('city',city);
+            data.append('latitude',String(latitude));
+            data.append('longitude',String(longitude));
+            data.append('items',items.join(','));
+         
+            //verificar se existe arquivo
+            if(selectedFile){
+                data.append('image', selectedFile);
+            }
+   
 
         await api.post('points', data);
         setOpenModal(true);
@@ -175,7 +184,7 @@ const CreatePoint = () => {
                 </header>
                 <form onSubmit={handleSubmit}>
                     <h1>Cadastro do <br /> ponto de coleta</h1>
-
+                    <DropZone  onFileUploaded={setSelectedFile}/>
                     <fieldset>
                         <legend>
                             <h2>Dados</h2>
