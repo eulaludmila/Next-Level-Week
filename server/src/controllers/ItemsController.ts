@@ -14,7 +14,7 @@ class ItemsController {
                 image_url:`http://192.168.100.4:3333/uploads/${item.image}`,
             }
         })
-        console.log(serializedItems)
+
         return res.json(serializedItems);
     }
 }

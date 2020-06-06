@@ -7,11 +7,11 @@ class PointsController{
     async index(req:Request, res:Response){
 
         const { city ,uf , items} = req.query;
-
+        
         const parsedItems = String(items)
         .split(',')
         .map(item => Number(item.trim()));
-
+      
         const points = await knex('points')
         .join('point_items', 'points.id', '=', 'point_items.point_id')
         .whereIn('point_items.item_id', parsedItems)
@@ -19,14 +19,14 @@ class PointsController{
         .where('uf', String(uf))
         .distinct()
         .select('points.*');
-
+        
         const serializedPoints = points.map(point => {
             return {
-                ...points,
+                ...point,
                 image_url: `http://192.168.100.4:3333/uploads/${point.image}`,
             }
         })
-
+    
         return res.json(serializedPoints);
         
 
