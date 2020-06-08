@@ -17,7 +17,21 @@
   }
   
   #page-home .content header {
+    width: 100%;
     margin: 48px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  #page-home .content header .cadastro{
+    display: flex;
+    align-items: center;
+  }
+
+  #page-home .content header span{
+    margin-right: 10px;
+    
   }
   
   #page-home .content main {

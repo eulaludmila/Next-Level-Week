@@ -5,10 +5,11 @@ import {FiUpload} from 'react-icons/fi'
 
 interface Props {
     onFileUploaded:(file:File) => void;
+    titulo:string
 }
 
 //usando para pegar a imagens ao ser arrastada
-const Dropzone:React.FC<Props> = ({onFileUploaded}) => {
+const Dropzone:React.FC<Props> = ({onFileUploaded,titulo}) => {
 
     const [selectedFileUrl, setSelectedFileUrl] = useState('');
   const onDrop = useCallback(acceptedFiles => {
@@ -32,7 +33,7 @@ const Dropzone:React.FC<Props> = ({onFileUploaded}) => {
           (
             <p>
             <FiUpload/>
-            Imagem do estabelecimento</p> 
+          {titulo}</p> 
           )
       }
      

@@ -1,0 +1,92 @@
+#page-points .content{
+    width: 100%;
+    min-height: 50px;
+    height: auto;
+    max-width: 1100px;
+    margin: 0 auto 50px;
+    padding: 0 30px;
+  
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+#page-points .content header {
+    margin: 48px 0 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #2FB86E;
+    margin-bottom: 50px;
+}
+
+#page-points .content .filtro{
+    width: 150px;
+    height: 50px;
+    background-color: rgb(28, 19, 46,0.9);
+    border-radius: 10px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    margin-bottom: 25px;
+    cursor: pointer;
+}
+
+#page-points .content header span{
+    width: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#page-points .content .busca{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+#content-points{
+    width: 100%;
+    min-height: 50px;
+    height: auto;
+    flex: 1;
+  
+
+    display: grid;
+    /* grid-template-columns: 33% 33% 33%; */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 3fr));
+    /* grid-template-columns: 1fr 1fr 1fr; */
+    gap: 20px;
+}
+
+#content-points .points{
+    min-height: 100px;
+    height: auto;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    padding:20px 0;
+
+}
+
+#content-points .points img{
+    width: 80%;
+    height: 140px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+#content-points .points h4{
+    width: 80%;
+    margin: 25px 0 10px;
+}
+
+#content-points .points p {
+    width: 80%;
+}

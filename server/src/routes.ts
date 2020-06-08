@@ -4,18 +4,23 @@ import multerConfig from './config/multer';
 import {celebrate, Joi} from 'celebrate'
 
 import PointsController from './controllers/PointsController'
+import PointsAllController from './controllers/PointsAllController'
 import ItemsController from './controllers/ItemsController';
+import PostsController from './controllers/PostsController';
 
 //desacoplar as rotas
 const routes = express.Router();
 const upload = multer(multerConfig);
 
 const pointsController = new PointsController();
+const pointsAllController = new PointsAllController();
 const itemsController = new ItemsController();
+const postsController = new PostsController();
 
 routes.get('/items', itemsController.index);
 
 routes.get('/points', pointsController.index);
+routes.get('/points-all', pointsAllController.index);
 routes.get('/points/:id' ,pointsController.show);
 
 routes.post('/points',upload.single('image'),celebrate({
@@ -33,5 +38,8 @@ routes.post('/points',upload.single('image'),celebrate({
     //faz todas as validações ao mesmo tempo
     abortEarly:false,
 }), pointsController.create);
+
+
+routes.post('/posts',upload.single('image'), postsController.create)
 
 export default routes;

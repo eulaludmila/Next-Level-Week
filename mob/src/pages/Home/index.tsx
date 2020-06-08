@@ -5,7 +5,6 @@ import { RectButton } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 import Select from 'react-native-picker-select';
 import axios from 'axios';
-import { reverseGeocodeAsync } from 'expo-location';
 
 interface IBGEUF {
   sigla: string;

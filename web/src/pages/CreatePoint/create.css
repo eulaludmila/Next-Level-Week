@@ -81,7 +81,9 @@
   
   #page-create-point form .field input[type=text],
   #page-create-point form .field input[type=email],
-  #page-create-point form .field input[type=number] {
+  #page-create-point form .field input[type=number],
+  #page-create-point form .field textarea
+   {
     flex: 1;
     background: #F0F0F5;
     border-radius: 8px;
@@ -89,6 +91,7 @@
     padding: 16px 24px;
     font-size: 16px;
     color: #6C6C80;
+    resize: none;
   }
   
   #page-create-point form .field select {
@@ -121,7 +124,7 @@
     margin-left: 24px;
   }
   
-  #page-create-point form .field-group input + input {
+  #page-create-point form .field-group input + textarea {
     margin-left: 24px;
   }
   
@@ -130,7 +133,7 @@
     align-items: center;
   }
   
-  #page-create-point form .field-check input[type=checkbox] {
+  #page-create-point form .field-check input[type=checkbox],#page-create-point form textarea {
     background: #F0F0F5;
   }
   

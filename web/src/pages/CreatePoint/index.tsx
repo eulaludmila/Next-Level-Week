@@ -184,7 +184,7 @@ const CreatePoint = () => {
                 </header>
                 <form onSubmit={handleSubmit}>
                     <h1>Cadastro do <br /> ponto de coleta</h1>
-                    <DropZone  onFileUploaded={setSelectedFile}/>
+                    <DropZone  onFileUploaded={setSelectedFile} titulo="Imagem do estabelecimento"/>
                     <fieldset>
                         <legend>
                             <h2>Dados</h2>
@@ -298,7 +298,7 @@ const CreatePoint = () => {
                 </form>
             </div>
             {
-                openModal != false && <Modal class={'open'}/> 
+                openModal !== false && <Modal class={'open'}/> 
             }
             
         </>
